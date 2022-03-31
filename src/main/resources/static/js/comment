@@ -1,0 +1,41 @@
+<script type="text/javascript">
+    $(function(){
+        //页面加载完毕后开始执行的事件
+        $(".reply_btn").click(function(){
+            //获取相册的id
+            var album_id = $("#album_id").val();
+            //获取回复对象的名称,即兄弟节点的第一个元素的值
+            var name =  $(this).siblings(":first").text();
+            //获取父回复的id,即评论楼id
+            var parent_id = $(this).siblings("p").text();
+            //获取当前用户的id
+            var userId = $("#comment_userID").val();
+
+            //alert(name);
+            //删除可能存在的回复框
+            $(".reply_textarea").remove();
+            //插入div
+            $(this).parent()
+                .append("" +
+                    "<div class='reply_textarea'>" +
+                    "<textarea name='commentTex' form='commentForm' cols='40' rows='5'></textarea><br/>" +
+                    "<form action='/recomm/replyComment' method='post' id='commentForm'>"+
+                    "<input style='display: none' type='text' name='targetName' id='setValue1'>"+
+                    "<input style='display: none' type='text' name='parent_id' id='setValue2'>"+
+                    "<input style='display: none' type='text' name='album_id' id='setValue3'>"+
+                    "<input style='display: none' type='text' name='userID' id='setValue4'>"+
+                    "<input type='submit' value='评论' />" +
+                    "<a οnclick='delRow()'>取消</a>"+
+                    "</div>");
+           /* 设置添加的div中input的值*/
+            $("#setValue1").val(name);
+            $("#setValue2").val(parent_id);
+            $("#setValue3").val(album_id);
+            $("#setValue4").val(userId);
+        });
+    });
+    /* 删除 */
+    function delRow() {
+        $(".reply_textarea").remove();
+    }
+</script>

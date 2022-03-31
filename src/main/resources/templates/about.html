@@ -1,0 +1,40 @@
+<!--评论列表-->
+<div class="cc_comments">
+    <div class="cc_comment_list"  th:each="comment,commentStat : ${session.comments}"  style="margin-bottom: 20px">
+        <div class="cc_comment_part">
+
+            <a style="position:absolute;">
+                <img class="layui-nav-img" th:src="${comment.getProfile_photo()}!=null ?'/' + ${comment.getProfile_photo()}:'http://t.cn/RCzsdCq'">
+            </a>
+            <div style="margin-left: 40px">
+
+                <span th:text="${comment.getUsername()}" style="color: #999;font-size: 12px"></span>
+                <div th:text="${comment.getC_content()}"></div>
+                <span th:text="${comment.getC_time()}" style="font-size: 10px;color: #999"></span>
+                <!--父评论id，即该楼层发起者的id-->
+                <p style="display: none" th:text="${comment.getC_id()}"></p>
+                <a href="javascript:;" class="reply_btn" style="color: #999;font-size: 12px">comment</a>
+            </div>
+
+            <!--子评论-->
+            <div th:if="${not #strings.isEmpty(comment.getChild())}">
+                <div th:each="commentChild:${comment.getChild()}" style="margin-top: 10px;margin-left: 20px">
+                    <a style="position:absolute;">
+                        <img class="layui-nav-img" th:src="${commentChild.getProfile_photo()} !=null?'/' + ${commentChild.getProfile_photo()}:'http://t.cn/RCzsdCq'">
+                    </a>
+                    <div style="margin-left: 40px">
+
+                        <span th:text="${commentChild.getUsername()}" style="color: #999;font-size: 12px"></span>
+                        <span th:if="${not #strings.isEmpty(commentChild.getTargetName())}" th:text="'comment：'+${commentChild.getTargetName()}" style="font-size: 12px"></span>
+                        <div th:text="${commentChild.getC_content()}"></div>
+                        <span th:text="${commentChild.getC_time()}" style="font-size: 10px;color: #999"></span>
+                        <!--父评论id，即该楼层发起者的id-->
+                        <p style="display: none" th:text="${comment.getC_id()}"></p>
+                        <a href="javascript:;" class="reply_btn" style="color: #999;font-size: 12px">comment</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
