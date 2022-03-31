@@ -1,4 +1,5 @@
 # SonicHollowForum
+<<<<<<< HEAD
 This is the official repository for CPT202 Software Engineering Group Project *Group B1*.
 
 ## Guideline
@@ -59,3 +60,6 @@ Update the project framework with registration function (no frontend)
 [Codepen -- Beautiful Code Templates for Frontend](https://codepen.io)
 
 [HTML Color Picker](https://www.runoob.com/tags/html-colorpicker.html)
+=======
+Forum
+>>>>>>> a0573f784d5c5e1e0061554f35694213b11190b1
